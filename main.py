@@ -20,11 +20,9 @@ for i in range(len(teams)):
     info = team.find_all("td", {"class": "zentriert"})
     squad = info[1].text
     age = info[2].text
-    print(f"{i}:{name} {squad} {age}")
-
-
+    foreigners = info[3].text
+    marketValue = team.find_all("td", {"class": "rechts"})
+    averageMV = marketValue[0].text
+    totalMV = marketValue [1].text
+    print(f"{i}:{name} {squad} {age} {foreigners} {averageMV} {totalMV}")
     
-team = teams[0]
-info = team.find_all("td", {"class": "zentriert"})
-squad = info[1].text
-age = info[2].text
