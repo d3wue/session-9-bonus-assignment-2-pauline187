@@ -11,9 +11,10 @@ print("1: Show available teams")
 print("2: Select team and show high level information on the team")
 print("3: Select team and and show all players of the team")
 print("4: Stop the program")
-choice = int(input())
+
 
 while True:
+    choice = int(input())
     if choice == 1:
         r = requests.get(url, headers=userAgent)
         htmlText = r.text
@@ -44,7 +45,7 @@ while True:
         break
     else:
         print("Invalid Option!")
-        
+
 #for i in range(len(teams)):
 #    team = teams[i]
 #    name = team.find('td', {'class': 'hauptlink no-border-links'}).text.strip()
