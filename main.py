@@ -12,6 +12,20 @@ htmlDocument = bs4.BeautifulSoup(htmlText, "html.parser")
 table = htmlDocument.find('table', {'class': 'items'}).find('tbody')
 teams = table.find_all('tr')
 
+def listPlayers():
+    userAgent = {
+    'User-Agent':
+    'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36'
+}
+    url = f"https://www.transfermarkt.com/fc-bayern-munchen/startseite/verein/27/saison_id/2023"
+    r = requests.get(url, headers=userAgent)
+    htmlText = r.text
+    htmlDocument = bs4.BeautifulSoup(htmlText, "html.parser")
+    table = htmlDocument.find('table', {'class': 'items'}).find("tbody")
+    players = table.find_all("td", {"class":"hauptlink"})
+    for p in players:
+        print(p.text)
+
 print("1: Show available teams")
 print("2: Select team and show high level information on the team")
 print("3: Select team and and show all players of the team")
@@ -36,6 +50,8 @@ while True:
         averageMV = marketValue[0].text
         totalMV = marketValue [1].text
         print(f"{name}: \nMembers: {squad} \nAverage age: {age} \nNumber of foreigners: {foreigners} \nAverage value: {averageMV} \nTotal value: {totalMV}")
+    elif choice == 3:
+        listPlayers()
     elif choice == 4:
         break
     else:
@@ -53,4 +69,8 @@ while True:
 #    totalMV = marketValue [1].text
 #    print(f"{i}:{name} {squad} {age} {foreigners} {averageMV} {totalMV}")
 
-url = f"https://www.transfermarkt.com/{name}/startseite/verein/saison_id/20232"
+
+
+
+
+
